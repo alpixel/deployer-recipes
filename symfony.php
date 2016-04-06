@@ -41,3 +41,7 @@ task('deploy:database:update', function () {
     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console doctrine:schema:update --env={{env}} --force');
 });
 after('deploy:vendors', 'deploy:database:update');
+
+task('elastica:populate', function () {
+    run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
+});
