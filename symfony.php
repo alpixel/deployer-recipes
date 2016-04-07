@@ -53,3 +53,6 @@ task('php:restart', function () {
 });
 after('deploy', 'php:restart');
 
+task('elastica:populate', function () {
+     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
+ });
