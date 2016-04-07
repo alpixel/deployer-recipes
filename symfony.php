@@ -7,7 +7,7 @@
 require 'recipe/symfony3.php';
 require __DIR__ . '/common.php';
 
-set('php-fpm', 'php5-fpm');
+env('php_fpm', 'php5-fpm');
 
 set('shared_dirs', array_merge(get('shared_dirs'), [
     'var/prod/logs',
@@ -49,7 +49,7 @@ task('elastica:populate', function () {
 });
 
 task('php:restart', function () {
-    run('service {{php-fpm}} restart');
+    run('service {{php_fpm}} restart');
 });
 after('deploy', 'php:restart');
 
