@@ -7,6 +7,8 @@
 require 'recipe/symfony3.php';
 require __DIR__ . '/common.php';
 
+set('php-fpm', 'php5-fpm');
+
 set('shared_dirs', array_merge(get('shared_dirs'), [
     'var/prod/logs',
     'var/sessions',
@@ -45,3 +47,9 @@ after('deploy:vendors', 'deploy:database:update');
 task('elastica:populate', function () {
     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
 });
+
+task('php:restart', function () {
+    run('service {{php-fpm}} restart');
+});
+after('deploy', 'php:restart');
+
