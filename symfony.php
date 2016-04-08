@@ -15,6 +15,7 @@ set('shared_dirs', array_merge(get('shared_dirs'), [
     'vendor',
     'web/lib',
     'web/upload',
+    'web/system',
     'node_modules',
 ]));
 
