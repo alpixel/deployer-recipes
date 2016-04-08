@@ -49,7 +49,7 @@ task('elastica:populate', function () {
 });
 
 task('php:restart', function () {
-    run('service {{php_fpm}} restart');
+    run('sudo service {{php_fpm}} restart');
 });
 after('deploy', 'php:restart');
 
