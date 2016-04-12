@@ -30,8 +30,8 @@ task('deploy:assets', function () {
 })->desc('Normalize asset timestamps');
 
 task('deploy:assetic:dump', function () {
-    run("cd {{release_path}} && npm update");
-    run("cd {{release_path}} && bower update");
+    run("cd {{release_path}} && npm install");
+    run("cd {{release_path}} && bower install");
     run("cd {{release_path}} && gulp");
 })->desc('Dump assets');
 
