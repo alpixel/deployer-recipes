@@ -55,5 +55,15 @@ task('php:restart', function () {
 after('deploy', 'php:restart');
 
 task('elastica:populate', function () {
-     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
- });
+    run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
+});
+
+task('seo:metatag', function () {
+    run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console seo:metatag:patterns --env=\'prod\'');
+});
+after('deploy:symlink', 'seo:metatag');
+
+task('seo:sitemap', function () {
+    run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console seo:sitemap seo:metatag:patterns --env=\'prod\'');
+});
+after('deploy:symlink', 'seo:sitemap');
