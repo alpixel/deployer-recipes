@@ -12,7 +12,6 @@ env('php_fpm', 'php5-fpm');
 set('shared_dirs', array_merge(get('shared_dirs'), [
     'var/prod/logs',
     'var/sessions',
-    'vendor',
     'web/lib',
     'web/upload',
     'web/system',
