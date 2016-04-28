@@ -12,7 +12,7 @@ task('seo:meta-tags', function () {
 })->desc('Dump meta tags');
 
 task('seo:sitemap', function () {
-    run("php {{release_path}}/" . trim(get('bin_dir'), '/') . "/console presta:sitemaps:dump --env='prod'");
+    run("php {{release_path}}/" . trim(get('bin_dir'), '/') . "/console alpixel:cms:sitemap --env='prod'");
 })->desc('Dump sitemap');
 
 after('deploy:vendors', 'seo:meta-tags');
