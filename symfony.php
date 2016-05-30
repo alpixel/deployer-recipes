@@ -9,6 +9,18 @@ require __DIR__ . '/common.php';
 
 env('php_fpm', 'php5-fpm');
 
+env('npm', function () {
+    return run("which npm")->toString();
+});
+
+env('bower', function () {
+    return run("which bower")->toString();
+});
+
+env('gulp', function () {
+    return run("which gulp")->toString();
+});
+
 set('shared_dirs', array_merge(get('shared_dirs'), [
     'var/prod/logs',
     'var/sessions',
@@ -29,9 +41,9 @@ task('deploy:assets', function () {
 })->desc('Normalize asset timestamps');
 
 task('deploy:assetic:dump', function () {
-    run("cd {{release_path}} && npm install");
-    run("cd {{release_path}} && bower install");
-    run("cd {{release_path}} && gulp");
+    run("cd {{release_path}} && {{npm}} install");
+    run("cd {{release_path}} && {{bower}} install");
+    run("cd {{release_path}} && {{gulp}}");
 })->desc('Dump assets');
 
 task('deploy:cron:enable', function () {
