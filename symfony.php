@@ -67,7 +67,11 @@ after('deploy', 'php:restart');
 
 task('elastica:populate', function () {
      run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
- });
+});
+
+task('elastica:populate:current', function () {
+     run('php {{deploy_path}}/current/' . trim(get('bin_dir'), '/') . '/console fos:elastica:populate --env=\'prod\'');
+});
 
 task('seo:dump', function () {
     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console seo:metatag:patterns --env=\'prod\'');
