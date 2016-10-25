@@ -34,6 +34,10 @@ set('shared_files', array_merge(get('shared_files'), [
     'sitemap.xml'
 ]));
 
+task('dump:parameters', function () {
+    run('cat {{deploy_path}}/current/' . trim(get('bin_dir'), '/') . '/../app/config/parameters.yml');
+});
+
 task('deploy:writable', function () {
 });
 
