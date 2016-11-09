@@ -81,3 +81,12 @@ task('seo:dump', function () {
     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console seo:metatag:patterns --env=\'prod\'');
     run('php {{release_path}}/' . trim(get('bin_dir'), '/') . '/console seo:sitemap --env=\'prod\'');
 });
+
+task('deploy:cleanup', function() {
+    run('rm -f {{release_path}}/Vagrantfile*');
+    run('rm -f {{release_path}}/deploy.php');
+    run('rm -rf {{release_path}}/.git');
+    run('rm -f {{release_path}}/README*');
+    run('rm -f {{release_path}}/build.xml');
+});
+after('cleanup', 'deploy:cleanup');
