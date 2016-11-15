@@ -1,5 +1,7 @@
 <?php
 
+namespace Deployer;
+
 /**
  * @author Benjamin HUBERT <benjamin@alpixel.fr>
  */

@@ -1,5 +1,7 @@
 <?php
 
+namespace Deployer;
+
 /**
  * @author Benjamin HUBERT <benjamin@alpixel.fr>
  */
@@ -7,17 +9,17 @@
 require 'recipe/symfony3.php';
 require __DIR__ . '/common.php';
 
-env('php_fpm', 'php5-fpm');
+set('php_fpm', 'php5-fpm');
 
-env('npm', function () {
+set('npm', function () {
     return run("which npm")->toString();
 });
 
-env('bower', function () {
+set('bower', function () {
     return run("which bower")->toString();
 });
 
-env('gulp', function () {
+set('gulp', function () {
     return run("which gulp")->toString();
 });
 
